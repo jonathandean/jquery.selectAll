@@ -17,10 +17,13 @@
  */
 (function($, window){
   $.fn.selectAll = function(options){
+    if(typeof options == 'undefined'){
+      options = {};
+    }
     var defaults = {
       /* warning: these default selectors are likely to be very ineffecient. try to make them more specific */
       group: 'body',
-      row: 'input[type=checkbox]',
+      row: 'input[type="checkbox"]',
       onchange: function(checked, unchecked) {}
     },
     opts = $.extend(defaults, options),
@@ -34,16 +37,16 @@
     }
 
     return this.each(function() {
-      $(this).bind('change', function(){
-        var other_rows = $(opts.group).find(opts.row);
+      $(this).on('change', function(){
+        var other_rows = $(opts.group).find(opts.row).not(this);
         var checked = $(this).is(':checked');
-        other_rows.attr('checked', checked);
+        other_rows.prop('checked', checked);
         onChange($(opts.group).find(checkedItems), $(opts.group).find(uncheckedItems));
       });
-      $(options.row).bind('change', function() {
-        var unchecked = $(opts.group).find(uncheckedItems);
-        $(self).attr('checked', (unchecked.length == 0));
-        onChange($(opts.group).find(checkedItems), unchecked);
+      $(opts.row).not(self).on('change', function() {
+        var unchecked = $(opts.group).find(uncheckedItems).not(self);
+        $(self).prop('checked', (unchecked.length == 0));
+        onChange($(opts.group).find(checkedItems).not(self), unchecked);
       });
     });
   };
