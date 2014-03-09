@@ -16,36 +16,36 @@
  *   http://jquery.com
  */
 (function($, window){
-	$.fn.selectAll = function(options){
-		/* warning: these defaults are likely to be very ineffecient. try to make them more specific */
-		var defaults = {
-			group: 'body',
-			row: 'input[type=checkbox]',
-			onchange: function(checked, unchecked) {}
-		}
-		,opts = $.extend(defaults, options)
-		,self = this
-		,checkedItems = opts.row + ":checked"
-		,uncheckedItems = opts.row + ":not(:checked)"
-		;
+  $.fn.selectAll = function(options){
+    /* warning: these defaults are likely to be very ineffecient. try to make them more specific */
+    var defaults = {
+      group: 'body',
+      row: 'input[type=checkbox]',
+      onchange: function(checked, unchecked) {}
+    }
+    ,opts = $.extend(defaults, options)
+    ,self = this
+    ,checkedItems = opts.row + ":checked"
+    ,uncheckedItems = opts.row + ":not(:checked)"
+    ;
 
-		function onChange(checked, unchecked) {
-			// Fire registered onchange handler
-			opts.onchange(checked, unchecked);
-		}
+    function onChange(checked, unchecked) {
+      // Fire registered onchange handler
+      opts.onchange(checked, unchecked);
+    }
 
-		return this.each(function() {
-			$(this).bind('change', function(){
-				var other_rows = $(opts.group).find(opts.row)
-					,checked = $(this).is(':checked');
-				other_rows.attr('checked', checked);
-				onChange($(opts.group).find(checkedItems), $(opts.group).find(uncheckedItems));
-			});
-			$(options.row).bind('change', function() {
-				var unchecked = $(opts.group).find(uncheckedItems);
-				$(self).attr('checked', (unchecked.length == 0));
-				onChange($(opts.group).find(checkedItems), unchecked);
-			});
-		});
-	};
+    return this.each(function() {
+      $(this).bind('change', function(){
+        var other_rows = $(opts.group).find(opts.row)
+          ,checked = $(this).is(':checked');
+        other_rows.attr('checked', checked);
+        onChange($(opts.group).find(checkedItems), $(opts.group).find(uncheckedItems));
+      });
+      $(options.row).bind('change', function() {
+        var unchecked = $(opts.group).find(uncheckedItems);
+        $(self).attr('checked', (unchecked.length == 0));
+        onChange($(opts.group).find(checkedItems), unchecked);
+      });
+    });
+  };
 })(jQuery, window);
