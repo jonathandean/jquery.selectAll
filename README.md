@@ -1,16 +1,16 @@
 jquery.selectall
 ================
 
-A checkbox named _select_all_ that checks and un-checks all others on the page
+A checkbox named _select-all_ that checks and un-checks all others on the page
 
 ```javascript
-$('input[name"select_all"]').selectAll();
+$('input[name"select-all"]').selectAll();
 ```
 
 The defaults can be very inefficient. It's better to specify the selector for the group of checkboxes and each row
 
 ```javascript
-$('input.select_all').selectAll({
+$('input.select-all').selectAll({
   group: 'form.some_form',
   row: 'input.some_inputs'
 });
@@ -19,7 +19,7 @@ $('input.select_all').selectAll({
 You can also specify a callback method for when checkbox change their value
 
 ```javascript
-$('input.select_all').selectAll({
+$('input.select-all').selectAll({
   onchange: function(checked, unchecked){
     /* do some stuff */
   }
@@ -29,7 +29,7 @@ $('input.select_all').selectAll({
 For example, highlight the checked rows in a table (this "info" class works with twitter bootstrap)
 
 ```javascript
-$('input.select_all').selectAll({
+$('input.select-all').selectAll({
   onchange: function(checked, unchecked){
     $(checked).closest('tr').addClass('info');
     $(unchecked).closest('tr').removeClass('info');
