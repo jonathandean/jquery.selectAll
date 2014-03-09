@@ -17,8 +17,8 @@
  */
 (function($, window){
   $.fn.selectAll = function(options){
-    /* warning: these defaults are likely to be very ineffecient. try to make them more specific */
     var defaults = {
+      /* warning: these default selectors are likely to be very ineffecient. try to make them more specific */
       group: 'body',
       row: 'input[type=checkbox]',
       onchange: function(checked, unchecked) {}
