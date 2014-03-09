@@ -22,12 +22,11 @@
       group: 'body',
       row: 'input[type=checkbox]',
       onchange: function(checked, unchecked) {}
-    }
-    ,opts = $.extend(defaults, options)
-    ,self = this
-    ,checkedItems = opts.row + ":checked"
-    ,uncheckedItems = opts.row + ":not(:checked)"
-    ;
+    },
+    opts = $.extend(defaults, options),
+    self = this,
+    checkedItems = opts.row + ":checked",
+    uncheckedItems = opts.row + ":not(:checked)";
 
     function onChange(checked, unchecked) {
       // Fire registered onchange handler
@@ -36,8 +35,8 @@
 
     return this.each(function() {
       $(this).bind('change', function(){
-        var other_rows = $(opts.group).find(opts.row)
-          ,checked = $(this).is(':checked');
+        var other_rows = $(opts.group).find(opts.row);
+        var checked = $(this).is(':checked');
         other_rows.attr('checked', checked);
         onChange($(opts.group).find(checkedItems), $(opts.group).find(uncheckedItems));
       });
