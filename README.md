@@ -1,7 +1,7 @@
 jquery.selectall
 ================
 
-A checkbox named _select-all_ that checks and un-checks all others on the page
+A checkbox named ```'select-all'``` that checks and un-checks all others on the page
 
 ```javascript
 $('input[name"select-all"]').selectAll();
@@ -16,7 +16,7 @@ $('input.select-all').selectAll({
 });
 ```
 
-You can also specify a callback method for when checkbox change their value
+You can also specify a callback method for when checkboxes change their value
 
 ```javascript
 $('input.select-all').selectAll({
@@ -26,7 +26,7 @@ $('input.select-all').selectAll({
 });
 ```
 
-For example, highlight the checked rows in a table (this "info" class works with twitter bootstrap)
+For example, highlight the checked rows in a table (this ```'info'``` class works with twitter bootstrap)
 
 ```javascript
 $('input.select-all').selectAll({
